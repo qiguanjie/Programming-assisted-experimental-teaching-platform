@@ -1,0 +1,48 @@
+{% extends 'base.html' %}
+
+{% block title %}
+注册
+{% endblock %}
+
+{% block css %}
+<link rel="stylesheet" href="../static/css/register.css" />
+
+{% endblock %}
+
+{% block content %}
+    <div id="register_content">
+        <form role="form" method="post">
+            <span style=" font-size:20px;color: red" >
+                {% for item in get_flashed_messages() %}
+                {{ item }}
+                {% endfor %}
+            </span>
+			<div class="form-group">
+				<label>邮箱</label>
+				<input type="email" name="email" class="form-control" placeholder="请输入你想要注册的邮箱，用于登录使用" />
+			</div>
+            <div class="form-group">
+				<label>昵称</label>
+				<input type="text" name="nickname" class="form-control" placeholder="请输入你的昵称" />
+			</div>
+			<div class="form-group">
+				<label>密码</label>
+				<input type="password" name="password1" class="form-control" placeholder="请输入密码" />
+				<br />
+            </div>
+			<div class="form-group">
+				<label>确认密码</label>
+				<input type="password" name="password2" class="form-control" placeholder="请再次输入密码" />
+			</div>
+			<div class="form-group">
+				<label>联系方式</label>
+				<input type="text" name="phone" class="form-control" placeholder="请输入联系方式" />
+			</div>
+			<div class="form-group" id="div_butt">
+				<button type="submit" value="注册" style=" box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);background: #269ABC;font-size: 18px; color: black;border-radius: 20% ;">注册</button>
+                <input type="button" value="登录" name="sub2" id="button" onclick="location.href='{{ url_for('login') }}'" style="font-size: 18px; border-radius: 20% ; box-shadow: 0 8px 16px 0 rgba(0,0,0,0.2), 0 6px 20px 0 rgba(0,0,0,0.19);background: #269ABC; color: black;">
+			</div>
+		</form>
+    </div>
+
+{% endblock %}

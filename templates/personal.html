@@ -1,0 +1,93 @@
+{% extends 'base.html' %}
+{% block css %}
+   <meta charset="utf-8" />
+		<link rel="stylesheet" href="../static/css/ps.css">
+        <link rel="stylesheet" href="../static/css/f1.css" />{% endblock %}
+{% block content %}
+    <ul class="a">
+			<li id="b">
+				<div class="container">
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<td>
+									<a href="{{ url_for('personal') }}">个人资料</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="{{ url_for('personal_collect') }}">我的收藏</a>
+								</td>
+
+							</tr>
+							<tr>
+								<td>
+									<a href="{{ url_for('personal_attention') }}">我的关注</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="{{ url_for('personal_blog') }}">我的博客</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="{{ url_for('personal_fans') }}">我的粉丝</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</li>
+			<li id="c">
+				<a>
+					<fieldset align="center">
+						<legend align="center">&nbsp;  </legend>
+						<br />
+						<h1 align="left">&nbsp;&nbsp;&nbsp;个人资料<h4 align="right">&nbsp;</h4></h1>
+						<br />
+						<table class="table table-hover">
+							<tbody>
+								<tr>
+									<td>
+										用户名：{{ username }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										昵称：{{ nickname }}
+									</td>
+
+								</tr>
+								<tr>
+									<td>
+										邮箱：{{ email }}
+									</td>
+								</tr>
+								<tr>
+									<td>
+										联系方式：{{ phone }}
+									</td>
+
+								</tr>
+										<tr>
+									<td>
+										<a href="{{ url_for('personal_change') }}#"><input type="submit"  align="right" name="submit" value="修改信息"/></a>
+
+									</td>
+
+								</tr>
+
+							</tbody>
+						</table>
+		</ul>
+		</div>
+		</div>
+
+		</fieldset>
+
+		</form>
+
+		</li>
+		</ul>
+{% endblock %}

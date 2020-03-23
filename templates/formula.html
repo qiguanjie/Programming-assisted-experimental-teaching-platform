@@ -1,0 +1,36 @@
+{% extends 'base.html' %}
+{% block css %}
+		<link rel="stylesheet" href="../static/css/Demo.css">
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+{% endblock %}
+{% block content %}
+ <div class="area">
+
+    <input type="text" name="search" placeholder="有问题在这里搜索..." >
+                          <input type="button" value="搜索" class="button1">
+                          <a href="{{ url_for('post_questions') }}"><input type="button" value="发布问题" class="button1"></a>
+</form>
+
+       </div>
+<div id="cont">
+
+<ul>
+{% if formula_article %}
+    {% for it in formula_article[::-1] %}
+        <li  class="div1" style="height: 100%">
+            <div>
+                <p style="font-size: 24px;color: blue;"><a href="{{ url_for('detail_question',formula_id = it[4]) }}">{{ it[1] }}</a></p>
+                <p>{{ it[2] }}</p>
+            </div>
+            <div style="text-align: right;margin-top: 10px;">
+                <span style="margin-right: 20px">作者：{{ it[9] }}</span>
+                <span >发布时间：{{ it[3] }}</span>
+            </div>
+        </li>
+    {% endfor %}
+{% endif %}
+
+</ul>
+     </div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+{% endblock %}

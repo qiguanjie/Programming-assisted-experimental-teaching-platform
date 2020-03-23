@@ -1,0 +1,44 @@
+{% extends 'base.html' %}
+{% block title %}
+    问题详情
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="../static/css/detail_question.css">
+{% endblock %}
+{% block content %}
+<div class="detail_content">
+   <ul class="detail_ul">
+       <li class="title_li">
+           <h1>{{ title }}</h1>
+       </li>
+       {% if question_inf %}
+            {% for it in question_inf %}
+                <li class="answer_li">
+                   <div class="answer_div">
+                       <div class="content_div">
+                            {{ it[2] }}
+                       </div>
+                       <div class="author_div">
+                            <span>{{ it[1] }}楼</span>&emsp;<span>发布人：{{ it[4] }}</span>&emsp;<span>发布时间：{{ it[3] }}</span>&emsp;
+                       </div>
+                   </div>
+               </li>
+
+            {% endfor %}
+       {% endif %}
+   </ul>
+    <br><br>
+    <form method="post">
+        <div>
+            <textarea class="huifu" name="content">
+
+            </textarea>
+        </div>
+        <div class="form_butt">
+            <br>
+            <input type="submit" id="butt" value="发布评论">
+        </div>
+    </form>
+</div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+{% endblock %}

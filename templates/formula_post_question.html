@@ -1,0 +1,28 @@
+{% extends 'base.html' %}
+{% block css %}
+		<link rel="stylesheet" href="../static/css/Demo.css">
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+
+{% endblock %}
+{% block content %}
+<div class="back">
+			<div>
+				<form method="post"><br /><br /><br /><br /><br /><br /><br />
+					<h1 align="center">发布问题</h1>
+					<div align="center">
+						<div class="">
+							<textarea name="question_title" placeholder="请输入标题" value="请输入内容" cols="100" rows="2"></textarea>
+						</div>
+
+					</div>
+					<br />
+					<div align="center">
+                        <textarea name="question_content"  placeholder="请输入内容......." value="请输入内容" cols="100" rows="10"></textarea>
+						<p align="center"><input type="submit" value="立刻发布" /></p>
+					</div>
+
+				</form>
+			</div>
+		</div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br><br> <br> <br> <br><br> <br> <br> <br>
+{% endblock %}

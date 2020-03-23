@@ -1,0 +1,63 @@
+{% extends 'base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="../static/css/Demo.css">
+		<link rel="stylesheet" href="../static/css/f1.css" />
+		<link rel="stylesheet" href="../static/css/oj.css" />
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+{% endblock %}
+{% block content %}
+		<div class="content">
+			<div class="r">
+				<h1>反转数字</h1>
+				<hr style="color: #46B8DA;	" color="#0D90D1" />
+				<br />
+				<h2 style="color:#149BDF;">&nbsp;&nbsp;&nbsp;描述：</h2>
+				<br>
+				<div style=";width: 50%; margin-left: 5%;">
+					<h3>输入一个c语言4字节int范围内的数字，输出它反转后的数字。比如12345反转后是54321，-12345反转后是-54321。如果反转后的数字不在int范围内就输出0;</h3>
+				</div><br />
+				<h2 style="color:#149BDF;">&nbsp;&nbsp;&nbsp;输出：</h2>
+				<br>
+				<div style=";width:35%; margin-left: 5%;">
+					<h3>每行一个int范围内的数字，以EOF结尾。</h3>
+				</div><br />
+				<h2 style="color:#149BDF;">&nbsp;&nbsp;&nbsp;产量：</h2><br>
+				<div style=";width: 35%; margin-left: 5%;">
+					<h3>输出反转后的数字，每行一个</h3>
+				</div><br /><br />
+				<h2 style="color:#149BDF;">&nbsp;&nbsp;&nbsp;样本输入：</h2><br>
+				<div style=";width: 20%; margin-left: 5%;">
+					<h3>12345</h3>
+					<h3>-12345</h3>
+				</div><br />
+				<h2 style="color:#149BDF;">&nbsp;&nbsp;&nbsp;样本输出：</h2><br>
+				<div style=";width: 20%; margin-left: 5%;">
+					<h3>54321</h3>
+					<h3>-54321</h3>
+				</div><br />
+				<h2 style="color:#149BDF;">&nbsp;&nbsp;&nbsp;提示：</h2><br>
+				<div style=";width: 25%; margin-left: 5%;">
+					<h3>如果反转后的数字开头是0，就去掉那些0。</h3>
+
+				</div><br />
+
+			</div>
+
+<div class="container" style="height: 400px;width: 100%;background-color:white">
+	<br />
+	<div style="margin-left: 5%;">
+         <label for="sex">语言:</label>
+            <select id="sex" >
+                <option>C</option>
+                <option>C++</option>
+            </select>
+            </div>
+            <br /><div style="margin-left: 5%;"><textarea rows="10" cols="150">
+我是一个文本框。
+</textarea></div>
+<br />
+<p align="center"><input type="button" value="提交"></p>
+
+</div>
+
+{% endblock %}

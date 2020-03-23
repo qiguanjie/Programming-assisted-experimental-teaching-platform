@@ -1,0 +1,50 @@
+{% extends 'base.html' %}
+{% block content %}
+<div style="background-color:#b8daff;margin-left: 10%;margin-right: 10%;" >
+<h2 align="center">刷题中一些常用的C++语法</h2>
+			<div class="post-meta clearfix">
+										<span class="date">25 Feb, 2013</span>
+										<span class="category"><a href="#" title="View all posts in Server &amp; Database">Server &amp; Database</a></span>
+										<span class="comments"><a href="#" title="Comment on Integrating WordPress with Your Website">3 Comments</a></span>
+										<span class="like-count">66</span>
+									</div>
+  <pre style="word-break:break-word;">
+&nbsp;&nbsp;&nbsp;&nbsp; <p>这是我在刷题过程遇到的一些语法技巧，把他记下来，可能希望大神不要觉得这些东西很简单鄙视我</p>
+<p>1.<strong>如何遍历map，unordered_map？ （19-11-2018）</strong></p>
+<pre><code>map&lt;int, char&gt; Map;
+for (auto &amp; element : Map){
+    printf("%d, %c\n", element.first, element.second);
+}
+</code></pre>
+<p>即遍历之后返回的自动类型是一个pair，注意此处map的话返回有顺序的，而unordered_map 没有顺序</p>
+<p>2.<strong> varibale 数据类型的快速转换 (20-11-2018)</strong><br />
+   1） char 下的数字到int：</p>
+<p><code>string a = '1';
+     int b = a - '0';</code></p>
+<p>2） int数字到 string：</p>
+<p><code>int a = 12345;
+     string b  = to_string(a);</code></p>
+<p>3.<strong> initiliaze 固定size 某数据类型的2D 向量 (27-11-2018)</strong><br />
+<code>vector&lt;vector&lt;int&gt;&gt; A(m, vector&lt;int&gt;(n, 0))</code></p>
+<p>4.<strong> 有关unordered_set (27-11-2018)</strong><br />
+  1）从向量cosntruct initiliaze 一个unordered_set</p>
+<pre><code>vector&lt;int&gt; a = {1,2,3}
+unordered_set Set (a.begin(), a.end())
+</code></pre>
+<p>5.<strong>用lambda funtion 来定义sort 函数，以252 题为例 （28-11-2018）</strong></p>
+<pre><code> sort(intervals.begin(), intervals.end(), [](Interval a, Interval b){return  a.start &lt; b.start;});
+</code></pre>
+<p>6.<strong>在类中intialize 一个特定size的向量，以303题为例（28-11-2018）, 即intiliaze 一个向量，然后assign reference</strong></p>
+<pre><code>class NumArray{
+    vector&lt;int&gt; f;
+
+    NumArray(){
+        f = vector&lt;int&gt; (n+1, 0);
+    }
+}
+</code></pre>
+此篇为转载博客，原文：https://www.acwing.com/blog/content/47/
+								</pre>
+
+</div>
+{% endblock %}

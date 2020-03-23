@@ -1,0 +1,30 @@
+
+<!DOCTYPE html>
+<html>
+	<head>
+		<meta charset="utf-8">
+		<title>登录界面</title>
+		<link href="../static/css/login.css" rel="stylesheet" type="text/css">
+	</head>
+	<body>
+    <form method="POST">
+
+		<div id="loding">
+
+			<form>
+			<h1>Welcome</h1>
+            <span style="color: red; font-size: 20px;">
+                {% for item in get_flashed_messages() %}
+                {{ item }}
+                {% endfor %}
+            </span>
+			<input name="email" id="user" type="text" placeholder="请输入账号"/>
+			<input name="password" id="pw" type="password" placeholder="请输入密码"/>
+			<input type="submit" value="登录" name="sub1" id="button">
+		    <input type="button" value="注册" name="sub2" id="button" onclick="location.href='{{ url_for('register') }}'">
+			</form>
+		</div>
+
+		
+	</body>
+<html>

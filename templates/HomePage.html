@@ -1,0 +1,76 @@
+{% extends 'base.html' %}
+{% block css%}
+		<link rel="stylesheet" href="../static/css/Demo.css">
+
+{% endblock %}
+    {% block content %}
+		<div id="container">
+			<h3> <div class="rowA">
+        <div class="rowB" >
+        	<br /><br /><br /><br /><br /><br /><font color="#A6E1EC">
+            <h1 class="text-center" align="center">
+               欢迎来到SdwzCs程序设计类辅助实验教学平台
+            </h1>
+            <p class="text-center" align="center">
+                                                               一个学习交流的空间
+                <br>
+                                               为大家在漫漫的刷题之旅中，提供最优质的服务提供最优质的服务提供最优质的服务
+            </p></font>
+        </div>
+    </div></h3>
+			<br /><br /><br /><br />
+
+		</div>
+
+<div class="container">
+    <div class="sdwz">
+        <figure class="ex1">
+            <img src="../static/img/close-up-code-coding-160107.jpg" height="" width="">
+					<figcaption>
+						<h2> <span>在线编译器</span></h2>
+						<p>Online </p>
+						<a href="">View more</a>
+					</figcaption>
+        </figure>
+        <figure class="ex2">
+            					<img src="../static/img/study.jpg" width="100%" height="100%" alt="img02" />
+					<figcaption>
+						<h2><span>学习交流空间</span></h2>
+						<p>This is a place for everyone. <br>Who likes study.</p>
+						<a href="{{ url_for('formula') }}" target=" border:1px solid #ffcc00;background:#fffff7">View more</a>
+					</figcaption>
+        </figure>
+        <figure class="ex3">
+            <img src="../static/img/ojj.png"  width="100%" height="100%" alt="" />
+					<figcaption>
+						<h2><span>Online&nbsp;&nbsp;Judge</span></h2>
+						<p>This must good for you</p>
+						<a href="{{ url_for('onlinejudge') }}" target="_self">View more</a>
+					</figcaption>
+        </figure>
+        <figure class="ex4">
+            <img src="../static/img/QJ8675350992.jpg" alt="" width="100%" height="100%"/>
+					<figcaption>
+						<h1> <span>博客板块</span> </h1>
+						<a href="{{ url_for("blog") }}" target="_self">View more</a>
+					</figcaption>
+        </figure>
+        <figure class="ex5">
+            <img src="../static/img/QJ8654335013.jpg" width="100%" height="100% alt="" />
+					<figcaption>
+						<h2> <span>兴趣板块</span></h2>
+						<p>Intersting is very important</p>
+						<a href="#" target="_self">View more</a>
+					</figcaption>
+        </figure>
+        <figure class="ex6">
+            <img src="../static/img/timg.jpg" alt="" width="100%" height="100%"/>
+					<figcaption>
+						<h2>摄影<span>板块</span></h2>
+						<p>Dexter had his own strange way. You could watch him training ants.</p>
+						<a href="#" target=" border:1px solid #ffcc00;background:#fffff7">View more</a>
+					</figcaption>
+        </figure>
+    </div>
+</div>
+    {% endblock %}

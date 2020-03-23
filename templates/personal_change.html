@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{% block css %}
+		<link rel="stylesheet" href="../static/css/ps.css">
+        <link rel="stylesheet" href="../static/css/f1.css" />{% endblock %}
+{% block content %}
+    <ul class="a">
+			<li id="b">
+				<div class="container">
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<td>
+									<a href="#">个人资料</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">我的收藏</a>
+								</td>
+
+							</tr>
+							<tr>
+								<td>
+									<a href="#">我的关注</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">我的博客</a>
+								</td>
+							</tr>
+							<tr>
+								<td>
+									<a href="#">我的粉丝</a>
+								</td>
+							</tr>
+						</tbody>
+					</table>
+				</div>
+			</li>
+<li id="c">
+	<form method="post">
+		<fieldset align="center">
+			<legend align="center">个人信息</legend>
+			<h3>请输入个人信息</h3>
+            用户名：{{ username }} &nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<span style="color: red">*用户名不可更改</span><br>
+			昵称：<input type="text" name="nickname" size="15" style="font-size: 20px; line-height: 20px;" value="{{ nickname }}"><br /><br />
+			邮箱：<input type="text" name="email" size="15"  style="font-size: 20px; line-height: 20px;" value="{{ email }}"><br /><br />
+			联系方式：<input type="text" name="phone" size="15" style="font-size: 20px; line-height: 20px;" value="{{ phone }}"><br /><br />
+			<input type="submit" name="submit" value="提交更改"/>
+			<input type="reset" name="reset" value="取消更改" />
+
+
+		</fieldset>
+
+	</form>
+
+</li>
+		</ul>
+{% endblock %}

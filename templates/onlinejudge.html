@@ -1,0 +1,213 @@
+{% extends 'base.html' %}
+{% block css %}
+    <link rel="stylesheet" href="../static/css/Demo.css">
+		<link rel="stylesheet" href="../static/css/f1.css" />
+		<link rel="stylesheet" href="../static/css/oj.css" />
+		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+{% endblock %}
+{% block content %}
+<div class="content">
+<!--<div id="content-right"><h2 align="left"><span>Tag：C、C++、Python、linux</span></h2> </div>-->
+	<div class="content-left1">
+		<div class="containe1r">
+					<table class="table table-hover">
+						<tbody>
+							<tr>
+								<td class="tr1">
+									<ul style="list-style: none;"><li style="float: left;"><h2>Problem List</h2></li>
+										<li style="float: left;margin-left: 34%;"><h3>Difficulty</h3></li>
+										<li style="float: left;margin-left: 20%;"><input type="text"></li>
+									<li style="float: left;margin-left: 1%;"><input type="button" value="search"></li></ul>
+								</td>
+							</tr>
+
+
+																					<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">#</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">Title</p></div></li>
+										<li style="float: left;margin-left: 20%;"><div><p align="left">Level</p></div></li>
+									    <li style="float: left;margin-left: 19%;"><div><p align="left">Total</p></div></li>
+									    <li style="float: left;margin-left: 17.5%;"><div><p align="left">AC Rate</p></div></li>
+										</ul>
+								</td>
+							</tr>
+
+
+
+
+														<tr>
+								<td>
+                                    <a href="{{ url_for('onlinejudge_oj',oj = 'oj1') }}">
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">1</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">反转数字</p></div></li>
+										<li style="float: left;margin-left: 20%;"><div ><p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"><div ><p align="left">238</p></div></li>
+									    <li style="float: left;margin-left: 18%;"><div ><p align="left">10.92%</p></div></li>
+										</ul>
+                                    </a>
+								</td>
+							</tr>
+														<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">2</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">与素数大法</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">162</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">9.88%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+																					<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">3</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">送温暖</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">241</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">28.22%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+																					<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">4</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">的三角形</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">129</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">19.38%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+																					<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">5</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left"> and String</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">212</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">18.18%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+																					<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">6</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">与小公园</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">106</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">27.36%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+																					<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">7</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">采蘑菇</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">326</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">19.44%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+																					<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">8</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">LC and Prime</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">140</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">5.00%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+																					<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">9</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">LC和加玛帝国的公主</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">218</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">22.22%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+																												<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">10</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">LC的烦恼</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">128</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">25.00%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+    <tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">10</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">LC的烦恼</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">128</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">25.00%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+    <tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">10</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">LC的烦恼</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">128</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">25.00%</p></div></li>
+										</ul>
+								</td>
+							</tr><tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">10</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">LC的烦恼</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">128</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">25.00%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+    <tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">10</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">LC的烦恼</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">128</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">25.00%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+<tr>
+								<td>
+										<ul style="list-style: none;">
+										<li style="float: left;"><div style="width: 5px;">10</div></li>
+										<li style="float: left;margin-left: 10.3%;"><div style="width: 200px;"><p align="left">LC的烦恼</p></div></li>
+										<li style="float: left;margin-left: 20%;"> <p align="left">MID</p></div></li>
+									    <li style="float: left;margin-left: 20%;"> <p align="left">128</p></div></li>
+									    <li style="float: left;margin-left: 18%;"> <p align="left">25.00%</p></div></li>
+										</ul>
+								</td>
+							</tr>
+
+						</tbody>
+					</table>
+		</div>
+    	</div>
+
+
+{% endblock %}
