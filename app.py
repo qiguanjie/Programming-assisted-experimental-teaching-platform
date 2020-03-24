@@ -319,7 +319,22 @@ def detail_question():
     if formula_id is None:
         return redirect(url_for('formula'))
     if request.method == 'GET':
+        page = request.values.get('page')
+        if page is None:
+            page = int(1)
+        page = int(page)
         try:
+            cur = db.cursor()
+            sql = "select max(qno) from question_detail where formula_id = '%s'" % formula_id
+            db.ping(reconnect=True)
+            cur.execute(sql)
+            question = cur.fetchone()[0]
+            page_num = int(question/20 + 0.96)
+            # 防止页码溢出
+            if page < 1:
+                page = int(1)
+            if page > page_num:
+                page = int(page_num)
             cur = db.cursor()
             sql = "select title from SDWZCS.formula_post where formula_id = '%s'" % formula_id
             db.ping(reconnect=True)
@@ -329,7 +344,7 @@ def detail_question():
             db.ping(reconnect=True)
             cur.execute(sql)
             result = cur.fetchall()
-            return render_template('detail_question.html', question_inf=result,title = title)
+            return render_template('detail_question.html', question_inf=result,title = title,page=page,page_num = page_num,formula_id=formula_id)
         except Exception as e:
             raise e
     if request.method == 'POST':
