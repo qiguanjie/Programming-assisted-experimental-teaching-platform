@@ -230,6 +230,10 @@ def password_reset():
 @app.route('/formula',methods=['GET'])
 def formula():
     if request.method == 'GET':
+        page = request.values.get('page')
+        if page is None:
+            page = int(1)
+        page = int(page)
         try:
             cur = db.cursor()
             sql = "select count(*) from SDWZCS.formula_post"
@@ -241,8 +245,15 @@ def formula():
                 article_nums = 0
             else:
                 article_nums = int(result)
+            page_num = int(article_nums/5 + 0.9)
+            # 防止页码溢出
+            if page < 1:
+                page = int(1)
+            if page > page_num:
+                page = int(page_num)
+
             if article_nums > 0:
-                sql = "select formula_id,title,creat_time,nickname from SDWZCS.formula_post, SDWZCS.userInformation where formula_post.author = userInformation.email"
+                sql = "select formula_id,title,creat_time,nickname from SDWZCS.formula_post, SDWZCS.userInformation where formula_post.author = userInformation.email order by formula_id DESC "
                 cur.execute(sql)
                 db.commit()
                 result = cur.fetchall()
@@ -255,9 +266,11 @@ def formula():
                     content = (content,)
                     formula_article.append(iter[:] +content[:])
                 # print(formula_article)
-                return render_template('formula.html', article_nums=article_nums, formula_article=formula_article)
+                cur.close()
+                db.close()
+                return render_template('formula.html', article_nums=article_nums, formula_article=formula_article,page=page,page_num=page_num)
             else:
-                return render_template('formula.html', article_nums=article_nums)
+                return render_template('formula.html', article_nums=article_nums,page=page,page_num=page_num)
         except Exception as e:
             raise e
 

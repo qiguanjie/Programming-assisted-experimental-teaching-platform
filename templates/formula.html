@@ -1,36 +1,56 @@
 {% extends 'base.html' %}
 {% block css %}
 		<link rel="stylesheet" href="../static/css/Demo.css">
+        <link rel="stylesheet" href="../static/css/formula.css">
 		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+        <link href="https://cdn.bootcss.com/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 {% endblock %}
 {% block content %}
  <div class="area">
-
-    <input type="text" name="search" placeholder="有问题在这里搜索..." >
-                          <input type="button" value="搜索" class="button1">
-                          <a href="{{ url_for('post_questions') }}"><input type="button" value="发布问题" class="button1"></a>
-</form>
-
-       </div>
+     <input type="text" name="search" placeholder="有问题在这里搜索..." >
+     <input type="button" value="搜索" class="button1">
+     <a href="{{ url_for('post_questions') }}"><input type="button" value="发布问题" class="button1"></a>
+ </div>
 <div id="cont">
+    <ul>
+        {% if formula_article %}
+            {% for it in formula_article[(page-1)*5:(page-1)*5 + 5] %}
+                <li  class="div1" style="height: 100%">
+                    <div>
+                        <p style="font-size: 24px;color: blue;"><a href="{{ url_for('detail_question',formula_id = it[0]) }}">{{ it[1] }}</a></p>
+                        <p>{{ it[4] }}</p>
+                    </div>
+                    <div style="text-align: right;margin-top: 10px;">
+                        <span style="margin-right: 20px">作者：{{ it[3] }}</span>
+                        <span >发布时间：{{ it[2] }}</span>
+                    </div>
+                </li>
+            {% endfor %}
+        {% endif %}
+    </ul>
 
-<ul>
-{% if formula_article %}
-    {% for it in formula_article[::-1] %}
-        <li  class="div1" style="height: 100%">
-            <div>
-                <p style="font-size: 24px;color: blue;"><a href="{{ url_for('detail_question',formula_id = it[0]) }}">{{ it[1] }}</a></p>
-                <p>{{ it[4] }}</p>
-            </div>
-            <div style="text-align: right;margin-top: 10px;">
-                <span style="margin-right: 20px">作者：{{ it[3] }}</span>
-                <span >发布时间：{{ it[2] }}</span>
-            </div>
-        </li>
-    {% endfor %}
-{% endif %}
+    <div id="pagination">
+        <nav aria-label="Page navigation">
+              <ul class="pagination">
+                    <li>
+                      <a href="{{ url_for('formula',page = page-1) }}" aria-label="Previous">
+                        <span aria-hidden="true">&laquo;</span>
+                      </a>
+                    </li>
+                    {% for item in range(page_num) %}
+                        <li class="{% if page == item + 1 %}
+                                        active
+                                    {% endif %}
+                                   "><a href="{{ url_for('formula',page = item + 1) }}">{{ item + 1 }}</a></li>
+                    {% endfor %}
+                    <li>
+                      <a href="{{ url_for('formula',page = page + 1) }}" aria-label="Next">
+                        <span aria-hidden="true">&raquo;</span>
+                      </a>
+                    </li>
+              </ul>
+        </nav>
+    </div>
+</div>
 
-</ul>
-     </div>
-    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 {% endblock %}

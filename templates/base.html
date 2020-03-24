@@ -12,7 +12,7 @@
 		<link rel="stylesheet" href="../static/css/base.css">
 		<link rel="stylesheet" href="../static/css/f1.css" />
 		<script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
-    	 <script src="../static/js/headerscript.js "></script>
+        <script src="../static/js/headerscript.js "></script>
 {% block css%}
 {% endblock %}
 </head>
@@ -25,10 +25,7 @@
 					</font>
 
 				</a>
-				<div id="nav-btn" class="btn">
-					<a href="#"><img src="../static/img/a222.png" style="margin: 5px;width: 30px;height:30px;" /></a>
-				</div>
-				<ul class="nav-bar" style="float: left">
+				<ul class="nav-bar" id="my_head_left" style="float: left">
 					<li class="nav3" style="padding-left: 50px;">
 						<a href="{{ url_for('homepage') }}"><font color="#A6E1EC">首页</font></a>
 					</li>
@@ -43,7 +40,7 @@
                     </li>
                 </ul>
 
-                <ul class="nav-bar3" style="float:right;padding: 0 10px;list-style: none;line-height: 50px;"}>
+                <ul class="nav-bar3" id="my_head_right" style="float:right;padding: 0 10px;list-style: none;line-height: 50px;"}>
                     {% if nickname %}
                         {% if userType == 233 %}
                             <li style="float: right;padding: 0 10px; ">

@@ -342,7 +342,6 @@ section {
 	background-color: whitesmoke;
 	margin-top: 50px;
 }
-
 .div1 {
 	z-index: 2;
 	background-color: white;
@@ -353,6 +352,13 @@ section {
 	margin-right: 10%;
 	list-style: none;
 }
-
-
 #search-ask{z-index: 2;position: relative;margin-left: 88%;}
+
+#my_head_left{
+	font-size: 18px;
+}
+
+#my_head_right{
+		font-size: 18px;
+
+}
