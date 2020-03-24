@@ -133,15 +133,14 @@ def blog_art(art):
 def personal():
     cur = db.cursor()
     usernameGet = session.get('user_id')
-    sql = "select * from SDWZCS.userInformation where email = '%s'" % usernameGet
+    sql = "select email, phone, nickname, usertype, creat_time_user  from SDWZCS.userInformation where email = '%s'" % usernameGet
     db.ping(reconnect=True)
     cur.execute(sql)
     userInformation = cur.fetchone()
-    username = userInformation[0]
-    email = userInformation[2]
-    phone = userInformation[3]
-    nickname = userInformation[4]
-    return render_template('personal.html', username=username, email=email, phone=phone, nickname=nickname)
+    email = userInformation[0]
+    phone = userInformation[1]
+    nickname = userInformation[2]
+    return render_template('personal.html', email=email, phone=phone, nickname=nickname)
 
 
 # 个人中心我的关注

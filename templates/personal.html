@@ -1,8 +1,13 @@
 {% extends 'base.html' %}
+
+{% block title %}
+个人中心
+{% endblock %}
 {% block css %}
    <meta charset="utf-8" />
 		<link rel="stylesheet" href="../static/css/ps.css">
-        <link rel="stylesheet" href="../static/css/f1.css" />{% endblock %}
+        <link rel="stylesheet" href="../static/css/f1.css" />
+{% endblock %}
 {% block content %}
     <ul class="a">
 			<li id="b">
@@ -50,7 +55,7 @@
 							<tbody>
 								<tr>
 									<td>
-										用户名：{{ username }}
+										邮箱：{{ email }}
 									</td>
 								</tr>
 								<tr>
@@ -58,11 +63,6 @@
 										昵称：{{ nickname }}
 									</td>
 
-								</tr>
-								<tr>
-									<td>
-										邮箱：{{ email }}
-									</td>
 								</tr>
 								<tr>
 									<td>
@@ -80,14 +80,7 @@
 
 							</tbody>
 						</table>
-		</ul>
-		</div>
-		</div>
-
-		</fieldset>
-
-		</form>
-
-		</li>
+                    </fieldset>
+                </a>
 		</ul>
 {% endblock %}
