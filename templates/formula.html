@@ -19,12 +19,12 @@
     {% for it in formula_article[::-1] %}
         <li  class="div1" style="height: 100%">
             <div>
-                <p style="font-size: 24px;color: blue;"><a href="{{ url_for('detail_question',formula_id = it[4]) }}">{{ it[1] }}</a></p>
-                <p>{{ it[2] }}</p>
+                <p style="font-size: 24px;color: blue;"><a href="{{ url_for('detail_question',formula_id = it[0]) }}">{{ it[1] }}</a></p>
+                <p>{{ it[4] }}</p>
             </div>
             <div style="text-align: right;margin-top: 10px;">
-                <span style="margin-right: 20px">作者：{{ it[9] }}</span>
-                <span >发布时间：{{ it[3] }}</span>
+                <span style="margin-right: 20px">作者：{{ it[3] }}</span>
+                <span >发布时间：{{ it[2] }}</span>
             </div>
         </li>
     {% endfor %}
