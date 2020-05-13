@@ -1,6 +1,6 @@
 # encoding: utf-8
 
-from flask import Flask, render_template, request, flash, Blueprint, Response, session, redirect, url_for
+from flask import Flask, render_template, request, flash, Blueprint, Response, session, redirect, url_for,send_file
 from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import pymysql
@@ -348,7 +348,7 @@ def detail_question():
         except Exception as e:
             raise e
     if request.method == 'POST':
-        content = request.form.get('content')
+        content = request.form.get('editorValue')
         datetime = date = time.strftime("%Y-%m-%d %H:%M:%S")
         username = session.get('user_id')
         try:
@@ -377,6 +377,15 @@ def onlinejudge():
 def onlinejudge_oj(oj):
     return render_template('%s.html' % oj)
 
+# # demo
+# @app.route('/demo')
+# def demo():
+#     return render_template('bootstrap.html')
+
+# 下载测试
+@app.route('/download_os')
+def download_os():
+    return send_file("/home/download_os/learn-cos-ubuntu64.box", as_attachment=True)
 
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5005)

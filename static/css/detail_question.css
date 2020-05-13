@@ -16,6 +16,7 @@
 }
 
 .answer_div{
+    min-height: 50px;
 }
 
 .author_div{
