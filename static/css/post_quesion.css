@@ -1,0 +1,28 @@
+.post_quesion{
+    margin-left: 20%;
+    margin-right: 20%;
+    margin-top: 8%;
+}
+
+#inputEmail3{
+    width: 100%;
+}
+
+#page_header{
+    text-align: center;
+}
+
+.ueditor_div{
+    /*height: 300px;*/
+}
+
+/*设置富文本编辑器默认的高度*/
+#edui1_iframeholder{
+    height: 200px;
+}
+
+#post_issue_butt{
+    margin-top: 20px;
+    text-align: center;
+    height: 35px;
+}

@@ -8,10 +8,14 @@
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
 
+
     <!-- 引入配置文件 -->
     <script src="/static/ueditor/ueditor.config.js"}></script>
     <!-- 引入编辑器源码文件 -->
     <script src="/static/ueditor/ueditor.all.min.js"}></script>
+
+
+
 {% endblock %}
 {% block content %}
 <div class="detail_content">
@@ -24,7 +28,7 @@
                 <li class="answer_li">
                    <div class="answer_div">
                        <div class="content_div">
-                            {{ it[2]|safe }}
+                           {{ it[2]|safe }}
                        </div>
                        <div class="author_div">
                             <span>{{ it[1] }}楼</span>&emsp;<span>发布人：{{ it[4] }}</span>&emsp;<span>发布时间：{{ it[3] }}</span>&emsp;
