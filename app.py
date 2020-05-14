@@ -5,7 +5,7 @@ from werkzeug.security import generate_password_hash, check_password_hash
 from functools import wraps
 import pymysql
 from config import db
-# from decorators import login_limit
+from decorators import login_limit,admin_limit
 import time
 import config
 
@@ -24,6 +24,7 @@ def my_context_processor():
             db.ping(reconnect=True)
             cur.execute(sql)
             result = cur.fetchone()
+            cur.close()
             if result:
                 return {'email':user_id,'nickname':result[0] ,'userType':result[1]}
         except Exception as e:
@@ -129,7 +130,7 @@ def blog_art(art):
 
 # 个人中心
 @app.route('/personal')
-# @login_limit
+@login_limit
 def personal():
     cur = db.cursor()
     usernameGet = session.get('user_id')
@@ -140,46 +141,46 @@ def personal():
     email = userInformation[0]
     phone = userInformation[1]
     nickname = userInformation[2]
-    return render_template('personal.html', email=email, phone=phone, nickname=nickname)
+    usertype = userInformation[3]
+    return render_template('personal.html', email=email, phone=phone, nickname=nickname,usertype=usertype)
 
 
 # 个人中心我的关注
 @app.route('/personal/attention')
-# @login_limit
+@login_limit
 def personal_attention():
     return render_template('personal_attention.html')
 
 
 # 个人中心 我的博客
 @app.route('/personal/blog')
-# @login_limit
+@login_limit
 def personal_blog():
     return render_template('personal_blog.html')
 
 
 # 个人中心 修改个人信息
 @app.route('/personal/change', methods=['GET', 'POST'])
-# @login_limit
+@login_limit
 def personal_change():
     if request.method == 'GET':
         cur = db.cursor()
         username_get = session.get('user_id')
-        sql = "select * from SDWZCS.userInformation where email = '%s'" % username_get
+        sql = "select email,nickname,phone from SDWZCS.userInformation where email = '%s'" % username_get
         db.ping(reconnect=True)
         cur.execute(sql)
         userinformation = cur.fetchone()
-        username = userinformation[0]
-        email = userinformation[2]
-        phone = userinformation[3]
-        nickname = userinformation[4]
-        return render_template('personal_change.html', username=username, email=email, phone=phone, nickname=nickname)
+        email = userinformation[0]
+        phone = userinformation[2]
+        nickname = userinformation[1]
+        return render_template('personal_change.html',  email=email, phone=phone, nickname=nickname)
     else:
         cur = db.cursor()
         username_get = session.get('user_id')
         nickname = request.form.get('nickname')
         email = request.form.get('email')
         phone = request.form.get('phone')
-        sql = "update userInformation set SDWZCS.userInformation.nickname = '%s', SDWZCS.userInformation.email = '%s', SDWZCS.userInformation.phone = '%s' where SDWZCS.userInformation.username = '%s'" % (
+        sql = "update userInformation set SDWZCS.userInformation.nickname = '%s', SDWZCS.userInformation.email = '%s', SDWZCS.userInformation.phone = '%s' where SDWZCS.userInformation.email = '%s'" % (
         nickname, email, phone, username_get)
         try:
             db.ping(reconnect=True)
@@ -192,14 +193,14 @@ def personal_change():
 
 # 个人中心 我的收藏
 @app.route('/personal/collect')
-# @login_limit
+@login_limit
 def personal_collect():
     return render_template('personal_collect.html')
 
 
 # 个人中心 我的粉丝
 @app.route('/personal/fans')
-# @login_limit
+@login_limit
 def personal_fans():
     return render_template('personal_fans.html')
 
@@ -218,10 +219,11 @@ def password_reset():
         cur = db.cursor()
         sql = "update userInformation set SDWZCS.userInformation.password = '" + generate_password_hash('12321',
                                                                                                         method="pbkdf2:sha256",
-                                                                                                        salt_length=8) + "'where username = 'demo1';"
+                                                                                                        salt_length=8) + "'where email = 'demo1';"
         db.ping(reconnect=True)
         cur.execute(sql)
         db.commit()
+        cur.close()
     except Exception as e:
         raise e
 
@@ -267,7 +269,7 @@ def formula():
                     formula_article.append(iter[:] +content[:])
                 # print(formula_article)
                 cur.close()
-                db.close()
+                 
                 return render_template('formula.html', article_nums=article_nums, formula_article=formula_article,page=page,page_num=page_num)
             else:
                 return render_template('formula.html', article_nums=article_nums,page=page,page_num=page_num)
@@ -277,7 +279,7 @@ def formula():
 
 # 发布问答 - 默认 - 富文本编辑器
 @app.route('/formula/post_questions', methods=['GET', 'POST'])
-# @login_limit
+@login_limit
 def post_questions():
     if request.method == 'GET':
         return render_template('post_question_fwb.html')
@@ -306,6 +308,8 @@ def post_questions():
             db.ping(reconnect=True)
             cur.execute(sql)
             db.commit()
+            cur.close()
+             
             return redirect(url_for('formula'))
         except Exception as e:
             raise e
@@ -315,7 +319,7 @@ def post_questions():
 
 # 问题详情
 @app.route('/formula/detail_question', methods=['GET', 'POST'])
-# @login_limit
+@login_limit
 def detail_question():
     formula_id = request.values.get('formula_id')
     if formula_id is None:
@@ -363,6 +367,8 @@ def detail_question():
             db.ping(reconnect=True)
             cur.execute(sql)
             db.commit()
+            cur.close()
+             
             return redirect(url_for('detail_question',formula_id = formula_id))
         except Exception as e:
             raise e
@@ -410,6 +416,7 @@ def technology_Blog():
             db.commit()
             result = cur.fetchall()
             cur.close()
+             
             return render_template('technology_Blog.html', article_nums=article_nums, article=result,
                                    page=page, page_num=page_num)
         else:
@@ -419,6 +426,7 @@ def technology_Blog():
 
 # 发布技术博客-默认-富文本编辑器
 @app.route('/post_blog_fwb', methods=['GET', 'POST'])
+@admin_limit
 def post_blog_fwb():
     if request.method == 'GET':
         return render_template('post_blog_fwb.html')
@@ -441,6 +449,8 @@ def post_blog_fwb():
             db.ping(reconnect=True)
             cur.execute(sql)
             db.commit()
+            cur.close()
+             
             return redirect(url_for('technology_Blog'))
         except Exception as e:
             raise e
@@ -448,6 +458,7 @@ def post_blog_fwb():
 
 # 发布问答 - Markdown编辑器 - 测试
 @app.route('/formula/post_question_md', methods=['GET', 'POST'])
+@admin_limit
 def post_question_md():
     if request.method == 'GET':
         return render_template('post_blog_md.html')
@@ -474,6 +485,8 @@ def post_question_md():
             db.ping(reconnect=True)
             cur.execute(sql)
             db.commit()
+            cur.close()
+             
             return redirect(url_for('technology_Blog'))
         except Exception as e:
             raise e
@@ -486,6 +499,8 @@ def detail_blog(bno):
         sql = "select bno, title, content, md_or_fwb, creatTime, nickname from blog,SDWZCS.userInformation where blog.author = userInformation.email and bno='%s'" % bno
         cur.execute(sql)
         article = cur.fetchone()
+        cur.close()
+         
         if article is None:
             return redirect(url_for('homepage'))
         else:
@@ -500,6 +515,7 @@ def detail_blog(bno):
 @app.route('/markdown')
 def markdown():
     return render_template('onlineMarkdown.html')
+
 @app.route('/download_os')
 def download_os():
     return send_file("/home/download_os/learn-cos-ubuntu64.box", as_attachment=True)
