@@ -62,3 +62,13 @@
 	float: left;
 	margin-left: 40px;
 }
+
+#header font{
+    font-size: 18px;
+}
+.logo font{
+    font-size: 39px;
+}
+#page_header{
+    text-align: center;
+}

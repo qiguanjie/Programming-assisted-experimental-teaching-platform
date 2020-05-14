@@ -63,13 +63,13 @@ def login():
                 if check_password_hash(result[0], password):
                     session['user_id'] = email
                     session.permanent = True
-                    return render_template('HomePage.html')
+                    return redirect(url_for('homepage'))
                 else:
                     flash('密码错误')
-                    return render_template('login.html')
+                    return redirect(url_for('login'))
             except Exception as e:
                 flash('无此用户')
-                return render_template('login.html')
+                return redirect(url_for('login'))
                 raise e
     return render_template('login.html')
 
@@ -280,7 +280,7 @@ def formula():
 # @login_limit
 def post_questions():
     if request.method == 'GET':
-        return render_template('post_blog_md.html')
+        return render_template('post_question_fwb.html')
     else:
         try:
             cur = db.cursor()
@@ -388,7 +388,7 @@ def technology_Blog():
     page = int(page)
     try:
         cur = db.cursor()
-        sql = "select count(*) from SDWZCS.formula_post"
+        sql = "select count(*) from SDWZCS.blog"
         db.ping(reconnect=True)
         cur.execute(sql)
         db.commit()
@@ -397,7 +397,7 @@ def technology_Blog():
             article_nums = 0
         else:
             article_nums = int(result)
-        page_num = int(article_nums / 5 + 0.9)
+        page_num = int(article_nums / 8 + 0.9)
         # 防止页码溢出
         if page < 1:
             page = int(1)
@@ -405,22 +405,12 @@ def technology_Blog():
             page = int(page_num)
 
         if article_nums > 0:
-            sql = "select formula_id,title,creat_time,nickname from SDWZCS.formula_post, SDWZCS.userInformation where formula_post.author = userInformation.email order by formula_id DESC "
+            sql = "select bno,title,creatTime,nickname from SDWZCS.blog, SDWZCS.userInformation where blog.author = userInformation.email order by bno DESC "
             cur.execute(sql)
             db.commit()
             result = cur.fetchall()
-            formula_article = []
-            for iter in result:
-                sql = "select content from question_detail where formula_id = '%s' and qno = '1'" % iter[0]
-                cur.execute(sql)
-                db.commit()
-                content = cur.fetchone()[0]
-                content = (content,)
-                formula_article.append(iter[:] + content[:])
-            # print(formula_article)
             cur.close()
-            db.close()
-            return render_template('technology_Blog.html', article_nums=article_nums, formula_article=formula_article,
+            return render_template('technology_Blog.html', article_nums=article_nums, article=result,
                                    page=page, page_num=page_num)
         else:
             return render_template('technology_Blog.html', article_nums=article_nums, page=page, page_num=page_num)
@@ -428,15 +418,39 @@ def technology_Blog():
         raise e
 
 # 发布技术博客-默认-富文本编辑器
-@app.route('/post_blog_fwb')
+@app.route('/post_blog_fwb', methods=['GET', 'POST'])
 def post_blog_fwb():
-    return render_template('post_blog.html')
+    if request.method == 'GET':
+        return render_template('post_blog_fwb.html')
+    if request.method == 'POST':
+        try:
+            cur = db.cursor()
+            author = session.get('user_id')
+            title = request.form.get('title')
+            content = request.form.get('editorValue')
+            date = time.strftime("%Y-%m-%d %H:%M:%S")
+            sql = "select max(bno) from SDWZCS.blog"
+            db.ping(reconnect=True)
+            cur.execute(sql)
+            result = cur.fetchone()[0]
+            if result is None:
+                bno = 1
+            else:
+                bno = int(result) + 1
+            sql = "insert into blog(bno, title, content, md_or_fwb, creatTime, author) VALUES ('%s','%s','%s','%s','%s','%s')"%(bno,title,content,'0',date,author)
+            db.ping(reconnect=True)
+            cur.execute(sql)
+            db.commit()
+            return redirect(url_for('technology_Blog'))
+        except Exception as e:
+            raise e
+
 
 # 发布问答 - Markdown编辑器 - 测试
 @app.route('/formula/post_question_md', methods=['GET', 'POST'])
 def post_question_md():
     if request.method == 'GET':
-        return render_template('post_question_md.html')
+        return render_template('post_blog_md.html')
     if request.method == 'POST':
         try:
             cur = db.cursor()
@@ -472,7 +486,23 @@ def post_question_md():
         except Exception as e:
             raise e
 
-
+# blog 详情页面
+@app.route('/detail_blog/<bno>')
+def detail_blog(bno):
+    try:
+        cur = db.cursor()
+        sql = "select bno, title, content, md_or_fwb, creatTime, nickname from blog,SDWZCS.userInformation where blog.author = userInformation.email and bno='%s'" % bno
+        cur.execute(sql)
+        article = cur.fetchone()
+        if article is None:
+            return redirect(url_for('homepage'))
+        else:
+            if article[3] == 0:
+                return render_template('detail_blog_fwb.html', article = article)
+            else:
+                return render_template('detail_blog_md.html',article = article)
+    except Exception as e:
+        raise e
 # 下载测试
 @app.route('/download_os')
 def download_os():

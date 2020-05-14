@@ -16,12 +16,11 @@
       <h1>技术博客<small>Technology Blog</small></h1>
     </div>
     <ul>
-        {% if formula_article %}
-            {% for it in formula_article[(page-1)*5:(page-1)*5 + 5] %}
+        {% if article %}
+            {% for it in article[(page-1)*8:(page-1)*8 + 8] %}
                 <li  class="div1" style="height: 100%">
                     <div>
-                        <p style="font-size: 24px;color: blue;"><a href="{{ url_for('detail_question',formula_id = it[0]) }}">{{ it[1] }}</a></p>
-                        <p>{{ it[4]|safe }}</p>
+                        <p style="font-size: 24px;color: blue;"><a href="{{ url_for('detail_blog',bno = it[0]) }}">{{ it[1] }}</a></p>
                     </div>
                     <div style="text-align: right;margin-top: 10px;">
                         <span style="margin-right: 20px">作者：{{ it[3] }}</span>

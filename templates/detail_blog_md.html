@@ -1,0 +1,53 @@
+{% extends 'base.html' %}
+{% block title %}
+    {{ article[1] }}
+{% endblock %}
+{% block css %}
+    <link rel="stylesheet" href="../static/css/detail_question.css">
+    <link rel="stylesheet" href="../static/css/formula.css">
+    <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
+    <link href="https://cdn.bootcss.com/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+
+    <link rel="stylesheet" href="/static/editor.md-master/css/editormd.css" />
+    <script src="https://cdn.bootcss.com/jquery/1.11.3/jquery.min.js"></script>
+    <script src="/static/editor.md-master/editormd.min.js"></script>
+    <script src="/static/editor.md-master/lib/marked.min.js"></script>
+    <script src="/static/editor.md-master/lib/prettify.min.js"></script>
+    <script src="/static/editor.md-master/lib/raphael.min.js"></script>
+    <script src="/static/editor.md-master/lib/underscore.min.js"></script>
+    <script src="/static/editor.md-master/lib/sequence-diagram.min.js"></script>
+    <script src="/static/editor.md-master/lib/flowchart.min.js"></script>
+    <script src="/static/editor.md-master/lib/jquery.flowchart.min.js"></script>
+
+    <script type="text/javascript">
+     $(document).ready(function () {
+            var mdContent;
+            mdContent = editormd.markdownToHTML("mdContent", {
+                htmlDecode: "style,script,iframe",  // you can filter tags decode
+                emoji: true,
+                taskList: true,
+                tex: true,  // 默认不解析
+                flowChart: true,  // 默认不解析
+                sequenceDiagram: true,  // 默认不解析
+            });
+     })
+    </script>
+{% endblock %}
+{% block content %}
+<div class="detail_content">
+   <ul class="detail_ul">
+       <li class="title_li">
+           <h1>{{ article[1] }}</h1>
+       </li>
+       <div class="author_div">
+            <span>发布人：{{ article[5] }}</span>&emsp;<span>发布时间：{{ article[4] }}</span>&emsp;
+       </div>
+   <br>
+       <div id="mdContent" class="mdContent">
+            <textarea  style="display:none;">{{ article[2] }}</textarea>
+        </div>
+   </ul>
+    <br><br>
+</div>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+{% endblock %}
