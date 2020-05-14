@@ -1,0 +1,22 @@
+#pagination{
+    text-align: center;
+}
+.div1 {
+	z-index: 2;
+	background-color: white;
+	height: 100%;
+	border: none;
+	margin-top: 10px;
+	margin-left: 10%;
+	margin-right: 10%;
+	list-style: none;
+}
+#header font{
+    font-size: 18px;
+}
+.logo font{
+    font-size: 39px;
+}
+#page_header{
+    text-align: center;
+}

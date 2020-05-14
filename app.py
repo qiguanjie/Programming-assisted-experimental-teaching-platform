@@ -280,7 +280,7 @@ def formula():
 # @login_limit
 def post_questions():
     if request.method == 'GET':
-        return render_template('formula_post_question.html')
+        return render_template('post_blog_md.html')
     else:
         try:
             cur = db.cursor()
@@ -310,45 +310,7 @@ def post_questions():
         except Exception as e:
             raise e
 
-# 发布问答 - Markdown编辑器
-@app.route('/formula/post_question_md', methods=['GET', 'POST'])
-def post_question_md():
-    if request.method == 'GET':
-        return render_template('post_question_md.html')
-    if request.method == 'POST':
-        try:
-            cur = db.cursor()
-            email = session.get('user_id')
-            title = request.form.get('title')
-            content = request.form.get('html_content')
-            print(request.values)
-            # 如果未登录 则跳转到登录页面
-            if email is None:
-                return redirect(url_for('login'))
-            date = time.strftime("%Y-%m-%d %H:%M:%S")
-            sql = "select max(formula_id) from SDWZCS.formula_post"
-            db.ping(reconnect=True)
-            cur.execute(sql)
-            result = cur.fetchone()[0]
-            if result is None:
-                formula_id = 1
-            else:
-                formula_id = int(result) + 1
-            sql = "insert into SDWZCS.formula_post(SDWZCS.formula_post.formula_id, SDWZCS.formula_post.author, " \
-                  "SDWZCS.formula_post.title,SDWZCS.formula_post.creat_time) values ('%s','%s','%s','%s')" % (
-                      formula_id, email, title, date)
-            db.ping(reconnect=True)
-            cur.execute(sql)
-            db.commit()
-            sql = "insert into question_detail(formula_id, qno, content, datetime, author) VALUES ('%s','1','%s','%s','%s')" % (
-            formula_id, content, date, email)
-            db.ping(reconnect=True)
-            cur.execute(sql)
-            db.commit()
-            return redirect(url_for('formula'))
 
-        except Exception as e:
-            raise e
 
 
 # 问题详情
@@ -417,10 +379,99 @@ def onlinejudge():
 def onlinejudge_oj(oj):
     return render_template('%s.html' % oj)
 
-# # demo
-# @app.route('/demo')
-# def demo():
-#     return render_template('bootstrap.html')
+# 技术博客页面
+@app.route('/technology_Blog')
+def technology_Blog():
+    page = request.values.get('page')
+    if page is None:
+        page = int(1)
+    page = int(page)
+    try:
+        cur = db.cursor()
+        sql = "select count(*) from SDWZCS.formula_post"
+        db.ping(reconnect=True)
+        cur.execute(sql)
+        db.commit()
+        result = cur.fetchone()[0]
+        if result is None:
+            article_nums = 0
+        else:
+            article_nums = int(result)
+        page_num = int(article_nums / 5 + 0.9)
+        # 防止页码溢出
+        if page < 1:
+            page = int(1)
+        if page > page_num:
+            page = int(page_num)
+
+        if article_nums > 0:
+            sql = "select formula_id,title,creat_time,nickname from SDWZCS.formula_post, SDWZCS.userInformation where formula_post.author = userInformation.email order by formula_id DESC "
+            cur.execute(sql)
+            db.commit()
+            result = cur.fetchall()
+            formula_article = []
+            for iter in result:
+                sql = "select content from question_detail where formula_id = '%s' and qno = '1'" % iter[0]
+                cur.execute(sql)
+                db.commit()
+                content = cur.fetchone()[0]
+                content = (content,)
+                formula_article.append(iter[:] + content[:])
+            # print(formula_article)
+            cur.close()
+            db.close()
+            return render_template('technology_Blog.html', article_nums=article_nums, formula_article=formula_article,
+                                   page=page, page_num=page_num)
+        else:
+            return render_template('technology_Blog.html', article_nums=article_nums, page=page, page_num=page_num)
+    except Exception as e:
+        raise e
+
+# 发布技术博客-默认-富文本编辑器
+@app.route('/post_blog_fwb')
+def post_blog_fwb():
+    return render_template('post_blog.html')
+
+# 发布问答 - Markdown编辑器 - 测试
+@app.route('/formula/post_question_md', methods=['GET', 'POST'])
+def post_question_md():
+    if request.method == 'GET':
+        return render_template('post_question_md.html')
+    if request.method == 'POST':
+        try:
+            cur = db.cursor()
+            email = session.get('user_id')
+            title = request.form.get('title')
+            content = request.form.get('html_content')
+            print(request.values)
+            # 如果未登录 则跳转到登录页面
+            if email is None:
+                return redirect(url_for('login'))
+            date = time.strftime("%Y-%m-%d %H:%M:%S")
+            sql = "select max(formula_id) from SDWZCS.formula_post"
+            db.ping(reconnect=True)
+            cur.execute(sql)
+            result = cur.fetchone()[0]
+            if result is None:
+                formula_id = 1
+            else:
+                formula_id = int(result) + 1
+            sql = "insert into SDWZCS.formula_post(SDWZCS.formula_post.formula_id, SDWZCS.formula_post.author, " \
+                  "SDWZCS.formula_post.title,SDWZCS.formula_post.creat_time) values ('%s','%s','%s','%s')" % (
+                      formula_id, email, title, date)
+            db.ping(reconnect=True)
+            cur.execute(sql)
+            db.commit()
+            sql = "insert into question_detail(formula_id, qno, content, datetime, author) VALUES ('%s','1','%s','%s','%s')" % (
+            formula_id, content, date, email)
+            db.ping(reconnect=True)
+            cur.execute(sql)
+            db.commit()
+            return redirect(url_for('formula'))
+
+        except Exception as e:
+            raise e
+
 
 # 下载测试
 @app.route('/download_os')

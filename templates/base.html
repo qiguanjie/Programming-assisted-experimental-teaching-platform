@@ -23,12 +23,12 @@
 <div id="header">
 			<div class="nav">
 				<a href="#" class="logo">
-					<font color="#A6E1EC"> Sdwzcs
+					<font color="#A6E1EC" style="font-size: 39px;font-weight: bold;font-family: 'Raleway', Arial, sans-serif;line-height: 50px"> Sdwzcs
 					</font>
 
 				</a>
 				<ul class="nav-bar" id="my_head_left" style="float: left">
-					<li class="nav3" style="padding-left: 50px;">
+					<li class="nav3" style="padding-left: 30px;">
 						<a href="{{ url_for('homepage') }}"><font color="#A6E1EC">首页</font></a>
 					</li>
 					<li>
@@ -38,7 +38,7 @@
 						<a href="{{ url_for('onlinejudge') }}"><font color="#A6E1EC">题库</font></a>
 					</li>
                     <li>
-						<a href="{{ url_for('blog') }}"><font color="#A6E1EC">博客</font></a>
+						<a href="{{ url_for('technology_Blog') }}"><font color="#A6E1EC">技术博客</font></a>
                     </li>
                 </ul>
 
@@ -54,6 +54,10 @@
                         </li>
                         <li style="float: right;padding: 0 10px; ">
                             <a href="{{ url_for('logout') }}"><font color="#A6E1EC">注销</font></a>
+                        </li>
+                        &emsp;
+                        <li style="float: right;padding: 0 10px; ">
+                            <a href="{{ url_for('post_blog_fwb') }}"><font color="#A6E1EC">发布博客</font></a>
                         </li>
                     {% else %}
                         <li style="float: right;padding: 0 10px;">
