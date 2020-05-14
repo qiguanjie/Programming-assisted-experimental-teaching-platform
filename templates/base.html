@@ -58,10 +58,11 @@
                         <li style="float: right;padding: 0 10px; ">
                             <a href="{{ url_for('logout') }}"><font color="#A6E1EC">注销</font></a>
                         </li>
-                        &emsp;
+                    {% if userType == 233 %}
                         <li style="float: right;padding: 0 10px; ">
                             <a href="{{ url_for('post_blog_fwb') }}"><font color="#A6E1EC">发布博客</font></a>
                         </li>
+                    {% endif %}
                     {% else %}
                         <li style="float: right;padding: 0 10px;">
                             <a href="{{ url_for('login') }}"><font color="#A6E1EC">登录</font></a>
