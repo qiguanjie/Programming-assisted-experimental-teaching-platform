@@ -3,7 +3,7 @@
     {{ article[1] }}
 {% endblock %}
 {% block css %}
-    <link rel="stylesheet" href="../static/css/detail_question.css">
+    <link rel="stylesheet" href="../static/css/detail_blog.css">
     <link rel="stylesheet" href="../static/css/formula.css">
     <script src="https://apps.bdimg.com/libs/jquery/2.1.4/jquery.min.js"></script>
     <link href="https://cdn.bootcss.com/twitter-bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
@@ -38,16 +38,16 @@
    <ul class="detail_ul">
        <li class="title_li">
            <h1>{{ article[1] }}</h1>
-       </li>
-       <div class="author_div">
+           <hr>
+           <div class="author_div">
             <span>发布人：{{ article[5] }}</span>&emsp;<span>发布时间：{{ article[4] }}</span>&emsp;
-       </div>
-   <br>
+            </div>
+       </li>
        <div id="mdContent" class="mdContent">
             <textarea  style="display:none;">{{ article[2] }}</textarea>
         </div>
    </ul>
     <br><br>
 </div>
-    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
+    <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br> <br>
 {% endblock %}

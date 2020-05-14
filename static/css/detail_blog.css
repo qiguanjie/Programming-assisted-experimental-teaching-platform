@@ -1,0 +1,70 @@
+.detail_content{
+    padding-left: 20%;
+    padding-right: 20%;
+    padding-top: 5%;
+}
+
+
+.detail_ul{
+    list-style-type: none;
+    border: dimgrey 1px dashed;
+    color: black;
+}
+
+.detail_ul li{
+    list-style-type: none;
+    border: dimgrey 1px dashed;
+}
+
+.author_div{
+    text-align: center;
+}
+
+.huifu{
+    width: 100%;
+    height: 200px;
+}
+
+.form_butt{
+    text-align: center;
+}
+
+#butt{
+    width: 120px;
+    height: 50px;
+}
+#my_head_left{
+	font-size: 18px;
+}
+
+#my_head_right{
+		font-size: 18px;
+}
+.articleContent{
+    margin-left: 0;
+}
+
+/*行内代码样式*/
+code {
+    font-size: inherit;
+    line-height: inherit;
+    overflow-wrap: break-word;
+    padding: 4px 1px 0 !important;
+    border-radius: 4px !important;
+    margin: 0 0 !important;
+    color: rgb(233, 105, 0);
+    background: rgb(248, 248, 248) none repeat scroll 0% 0%;
+    border: 0 !important;
+}
+/*代码不换行*/
+.markdown-body pre code {
+    white-space: pre;
+    display: inline-block;
+    margin-right: 20px;
+    background: #272822;
+    padding: 0;
+}
+/*代码块颜色*/
+.editormd-html-preview pre {
+    background: #272822;
+}

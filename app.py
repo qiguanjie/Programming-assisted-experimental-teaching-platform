@@ -454,35 +454,27 @@ def post_question_md():
     if request.method == 'POST':
         try:
             cur = db.cursor()
-            email = session.get('user_id')
+            author = session.get('user_id')
             title = request.form.get('title')
             content = request.form.get('html_content')
             print(request.values)
             # 如果未登录 则跳转到登录页面
-            if email is None:
+            if author is None:
                 return redirect(url_for('login'))
             date = time.strftime("%Y-%m-%d %H:%M:%S")
-            sql = "select max(formula_id) from SDWZCS.formula_post"
+            sql = "select max(bno) from SDWZCS.blog"
             db.ping(reconnect=True)
             cur.execute(sql)
             result = cur.fetchone()[0]
             if result is None:
-                formula_id = 1
+                bno = 1
             else:
-                formula_id = int(result) + 1
-            sql = "insert into SDWZCS.formula_post(SDWZCS.formula_post.formula_id, SDWZCS.formula_post.author, " \
-                  "SDWZCS.formula_post.title,SDWZCS.formula_post.creat_time) values ('%s','%s','%s','%s')" % (
-                      formula_id, email, title, date)
+                bno = int(result) + 1
+            sql = "insert into blog(bno, title, content, md_or_fwb, creatTime, author) VALUES ('%s','%s','%s','%s','%s','%s')" % (bno,title,content,'1',date,author)
             db.ping(reconnect=True)
             cur.execute(sql)
             db.commit()
-            sql = "insert into question_detail(formula_id, qno, content, datetime, author) VALUES ('%s','1','%s','%s','%s')" % (
-            formula_id, content, date, email)
-            db.ping(reconnect=True)
-            cur.execute(sql)
-            db.commit()
-            return redirect(url_for('formula'))
-
+            return redirect(url_for('technology_Blog'))
         except Exception as e:
             raise e
 
@@ -503,7 +495,11 @@ def detail_blog(bno):
                 return render_template('detail_blog_md.html',article = article)
     except Exception as e:
         raise e
-# 下载测试
+
+# 在线Markdown编辑器
+@app.route('/markdown')
+def markdown():
+    return render_template('onlineMarkdown.html')
 @app.route('/download_os')
 def download_os():
     return send_file("/home/download_os/learn-cos-ubuntu64.box", as_attachment=True)
