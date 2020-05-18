@@ -10,6 +10,19 @@ create table userInformation
         unique (email)
 );
 
+create table blog
+(
+    bno       int           not null
+        primary key,
+    title     text          not null,
+    content   text          null,
+    md_or_fwb int default 0 not null,
+    creatTime datetime      null,
+    author    varchar(128)  null,
+    constraint blog_userInformation_email_fk
+        foreign key (author) references userInformation (email)
+);
+
 create table formula_post
 (
     formula_id int                                        not null,
@@ -38,5 +51,4 @@ create table question_detail
     constraint question_detail_userInformation_email_fk
         foreign key (author) references userInformation (email)
 );
-
 
