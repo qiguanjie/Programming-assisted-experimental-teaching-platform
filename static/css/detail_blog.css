@@ -13,9 +13,10 @@
 
 .detail_ul li{
     list-style-type: none;
-    border: dimgrey 1px dashed;
 }
-
+.title_li{
+        border: dimgrey 1px dashed;
+}
 .author_div{
     text-align: center;
 }
