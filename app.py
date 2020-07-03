@@ -180,8 +180,8 @@ def personal_change():
         nickname = request.form.get('nickname')
         email = request.form.get('email')
         phone = request.form.get('phone')
-        sql = "update userInformation set SDWZCS.userInformation.nickname = '%s', SDWZCS.userInformation.email = '%s', SDWZCS.userInformation.phone = '%s' where SDWZCS.userInformation.email = '%s'" % (
-        nickname, email, phone, username_get)
+        sql = "update userInformation set SDWZCS.userInformation.nickname = '%s', SDWZCS.userInformation.phone = '%s' where SDWZCS.userInformation.email = '%s'" % (
+        nickname, phone, username_get)
         try:
             db.ping(reconnect=True)
             cur.execute(sql)
