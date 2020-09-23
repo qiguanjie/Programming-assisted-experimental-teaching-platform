@@ -416,7 +416,6 @@ def technology_Blog():
             db.commit()
             result = cur.fetchall()
             cur.close()
-             
             return render_template('technology_Blog.html', article_nums=article_nums, article=result,
                                    page=page, page_num=page_num)
         else:
