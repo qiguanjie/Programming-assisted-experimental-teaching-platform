@@ -158,7 +158,6 @@ def personal_attention():
 def personal_blog():
     return render_template('personal_blog.html')
 
-
 # 个人中心 修改个人信息
 @app.route('/personal/change', methods=['GET', 'POST'])
 @login_limit
@@ -313,8 +312,6 @@ def post_questions():
             return redirect(url_for('formula'))
         except Exception as e:
             raise e
-
-
 
 
 # 问题详情
@@ -519,5 +516,7 @@ def markdown():
 def download_os():
     return send_file("/home/download_os/learn-cos-ubuntu64.box", as_attachment=True)
 
+
+# 入口函数
 if __name__ == '__main__':
     app.run(host='127.0.0.1', port=5005)
